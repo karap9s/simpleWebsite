@@ -1,2 +1,0 @@
-# simpleWebsite
-Simple Website
