@@ -1,0 +1,20 @@
+import React, { FC } from "react";
+import { PostsPropsType } from "../model/interface";
+import styles from "./posts.module.css";
+
+const Posts: FC<{ postsState: Array<PostsPropsType> }> = (props) => {
+  const { postsState } = props;
+
+  return (
+    <div className={styles.posts_wrapper}>
+      {postsState?.map((post) => (
+        <div className={styles.post}>
+          <h2 className={styles.post_heading}>{post.title}</h2>
+          <p className={styles.post_text}>{post.body}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Posts;
