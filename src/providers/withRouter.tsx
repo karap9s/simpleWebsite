@@ -2,14 +2,16 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { Posts, PostsPropsType } from "../components/posts";
 import { useEffect, useState } from "react";
 import { UsersPropsType } from "../components/users";
-import { posts, users } from "../services";
+import { getComments, posts, users } from "../services";
 import App from "../components/app/ui/App";
-import { Comments } from "../components/comments";
+import { Comments, CommentsPropsType } from "../components/comments";
 
 const withRouter = () => {
   const [postsState, setPostsState] = useState<Array<PostsPropsType>>([]);
   const [usersState, setUsersState] = useState<Array<UsersPropsType>>([]);
-  const [commentsState, setCommentsState] = useState([]);
+  const [commentsState, setCommentsState] = useState<Array<CommentsPropsType>>(
+    []
+  );
 
   useEffect(() => {
     posts().then((data) => {
@@ -31,6 +33,8 @@ const withRouter = () => {
             usersState={usersState}
             setUsersState={setUsersState}
             postsState={postsState}
+            commentsState={commentsState}
+            setCommentsState={setCommentsState}
           />
         }
       />
