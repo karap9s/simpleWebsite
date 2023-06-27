@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { UsersPropsType } from "../components/users";
 import { posts, users } from "../services";
 import App from "../components/app/ui/App";
+import { Comments } from "../components/comments";
 
 const withRouter = () => {
   const [postsState, setPostsState] = useState<Array<PostsPropsType>>([]);
@@ -33,6 +34,7 @@ const withRouter = () => {
           />
         }
       />
+      <Route path="/comments" element={<Comments />} />
     </Routes>
   );
 };
