@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="app_wrapper">
-      <Users usersState={usersState} />
+      <Users usersState={usersState} setPostsState={setPostsState} />
       <Posts postsState={postsState} />
     </div>
   );
