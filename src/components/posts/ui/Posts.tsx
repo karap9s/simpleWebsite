@@ -6,9 +6,9 @@ const Posts: FC<{ postsState: Array<PostsPropsType> }> = (props) => {
   const { postsState } = props;
 
   return (
-    <div className={styles.posts_wrapper}>
+    <div className={styles.wrapper}>
       {postsState?.map((post) => (
-        <div className={styles.post}>
+        <div className={styles.post} key={post.id}>
           <h2 className={styles.post_heading}>{post.title}</h2>
           <p className={styles.post_text}>{post.body}</p>
         </div>
