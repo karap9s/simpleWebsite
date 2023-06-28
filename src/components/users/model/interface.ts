@@ -1,3 +1,5 @@
+import { PostsType } from "../../posts";
+
 interface UsersAddressType {
   address: {
     city: string;
@@ -19,7 +21,7 @@ interface UsersCompanyType {
   };
 }
 
-export interface UsersPropsType {
+export interface UsersType {
   address: UsersAddressType;
   company: UsersCompanyType;
   email: string;
@@ -28,4 +30,9 @@ export interface UsersPropsType {
   phone: string;
   username: string;
   website: string;
+}
+
+export interface UsersPropsType {
+  usersState: Array<UsersType>;
+  setPostsState: (id: Array<PostsType>) => void;
 }

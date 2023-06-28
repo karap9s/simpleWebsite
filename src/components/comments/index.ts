@@ -1,5 +1,5 @@
 import Comments from "./ui/Comments";
-import { CommentsPropsType } from "./model/interface";
+import { CommentsPropsType, CommentsType } from "./model/interface";
 
 export { Comments };
-export type { CommentsPropsType };
+export type { CommentsPropsType, CommentsType };

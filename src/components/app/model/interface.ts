@@ -1,12 +1,12 @@
-import { PostsPropsType } from "../../posts";
-import { UsersPropsType } from "../../users";
-import { CommentsPropsType } from "../../comments";
+import { PostsType } from "../../posts";
+import { UsersType } from "../../users";
+import { CommentsType } from "../../comments";
 
 export interface AppPropsType {
-  postsState: Array<PostsPropsType>;
-  setPostsState: (value: PostsPropsType) => void;
-  usersState: Array<UsersPropsType>;
-  setUsersState: (value: UsersPropsType) => void;
-  commentsState: Array<CommentsPropsType>;
-  setCommentsState: (value: CommentsPropsType) => void;
+  postsState: Array<PostsType>;
+  setPostsState: (value: Array<PostsType>) => void;
+  usersState: Array<UsersType>;
+  setUsersState: (value: Array<UsersType>) => void;
+  commentsState: Array<CommentsType>;
+  setCommentsState: (value: Array<CommentsType>) => void;
 }

@@ -3,12 +3,8 @@ import { Select } from "antd";
 import { UsersPropsType } from "../model/interface";
 import styles from "./users.module.css";
 import { posts } from "../../../services";
-import { PostsPropsType } from "../../posts";
 
-const Users: FC<{
-  usersState: Array<UsersPropsType>;
-  setPostsState: (id: Array<PostsPropsType>) => void;
-}> = (props) => {
+const Users: FC<UsersPropsType> = (props) => {
   const { usersState, setPostsState } = props;
 
   const handleChange = (value: string) => {
@@ -21,6 +17,7 @@ const Users: FC<{
     <div className={styles.wrapper}>
       <h2 className={styles.heading}>Users:</h2>
       <Select
+        placeholder="Select user..."
         className={styles.select}
         onChange={handleChange}
         options={usersState.map((user) => {

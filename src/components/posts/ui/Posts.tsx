@@ -4,10 +4,7 @@ import styles from "./posts.module.css";
 import { useNavigate } from "react-router-dom";
 import { getComments } from "../../../services";
 
-const Posts: FC<{
-  postsState: Array<PostsPropsType>;
-  setCommentsState: (value: number) => void;
-}> = (props) => {
+const Posts: FC<PostsPropsType> = (props) => {
   const { postsState, setCommentsState } = props;
   const navigate = useNavigate();
 
@@ -19,9 +16,12 @@ const Posts: FC<{
           key={post.id}
           onClick={() => {
             getComments(post.id).then((data) => {
-              if (data.status === 200) setCommentsState(data.data);
+              if (data.status === 200) {
+                setCommentsState(data.data);
+                navigate("/comments");
+                console.log(data.data);
+              }
             });
-            navigate("/comments");
           }}
         >
           <h2 className={styles.post_heading}>{post.title}</h2>

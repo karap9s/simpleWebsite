@@ -1,5 +1,5 @@
 import Users from "./ui/Users";
-import { UsersPropsType } from "./model/interface";
+import { UsersPropsType, UsersType } from "./model/interface";
 
 export { Users };
-export type { UsersPropsType };
+export type { UsersPropsType, UsersType };

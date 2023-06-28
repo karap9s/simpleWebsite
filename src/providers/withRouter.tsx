@@ -1,17 +1,15 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { Posts, PostsPropsType } from "../components/posts";
+import { PostsType } from "../components/posts";
 import { useEffect, useState } from "react";
-import { UsersPropsType } from "../components/users";
-import { getComments, posts, users } from "../services";
+import { UsersType } from "../components/users";
+import { posts, users } from "../services";
 import App from "../components/app/ui/App";
-import { Comments, CommentsPropsType } from "../components/comments";
+import { Comments, CommentsType } from "../components/comments";
 
 const withRouter = () => {
-  const [postsState, setPostsState] = useState<Array<PostsPropsType>>([]);
-  const [usersState, setUsersState] = useState<Array<UsersPropsType>>([]);
-  const [commentsState, setCommentsState] = useState<Array<CommentsPropsType>>(
-    []
-  );
+  const [postsState, setPostsState] = useState<Array<PostsType>>([]);
+  const [usersState, setUsersState] = useState<Array<UsersType>>([]);
+  const [commentsState, setCommentsState] = useState<Array<CommentsType>>([]);
 
   useEffect(() => {
     posts().then((data) => {
