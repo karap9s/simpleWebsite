@@ -1,5 +1,4 @@
 import instance from "./instance";
-import { AxiosResponse } from "axios";
 
 interface ArgumentsProps {
   postId: number;

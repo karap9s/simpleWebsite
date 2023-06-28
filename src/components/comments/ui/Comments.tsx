@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { CommentsPropsType } from "../model/interface";
 import styles from "./comments.module.css";
 import User from "../../../assets/user.png";
@@ -29,7 +29,7 @@ const Comments: FC<CommentsPropsType> = (props) => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       sendComment({
-        postId: currentPost.id,
+        postId: (currentPost as any).id,
         email: "MyCoolEmail@gmail.com",
         body: commentText,
       }).then((data) => {
@@ -55,13 +55,15 @@ const Comments: FC<CommentsPropsType> = (props) => {
               x
             </button>
             <img className={styles.user_img} src={User} alt="user_pic" />
-            <h2 className={styles.user_name}>{currentUser.name},</h2>
-            <p>{currentUser.company.name}</p>
+            <h2 className={styles.user_name}>{(currentUser as any).name},</h2>
+            <p>{(currentUser as any).company.name}</p>
           </div>
           <div className={styles.post_wrapper}>
             <div className={styles.post}>
-              <h2 className={styles.post_heading}>{currentPost.title}</h2>
-              <p className={styles.post_text}>{currentPost.body}</p>
+              <h2 className={styles.post_heading}>
+                {(currentPost as any).title}
+              </h2>
+              <p className={styles.post_text}>{(currentPost as any).body}</p>
             </div>
             <div className={styles.comments_wrapper}>
               <h2 className={styles.comments_wrapper_heading}>Comments</h2>

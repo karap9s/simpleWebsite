@@ -8,7 +8,7 @@ const Users: FC<UsersPropsType> = (props) => {
   const { usersState, setPostsState } = props;
 
   const handleChange = (value: string) => {
-    posts(value).then((data) => {
+    posts(Number(value)).then((data) => {
       if (data.status === 200) setPostsState(data.data);
     });
   };

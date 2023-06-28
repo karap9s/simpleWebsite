@@ -11,7 +11,7 @@ export interface CommentsType {
 
 export interface CommentsPropsType {
   commentsState: Array<CommentsType>;
-  setCommentsState: (value: Array<CommentsType>) => void;
+  setCommentsState: (value: (prev) => any[]) => void;
   currentPost: PostsType;
   setCurrentPost: (value: PostsType) => void;
   currentUser: UsersType;

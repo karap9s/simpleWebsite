@@ -35,7 +35,6 @@ const withRouter = () => {
             postsState={postsState}
             commentsState={commentsState}
             setCommentsState={setCommentsState}
-            currentUser={currentUser}
             setCurrentPost={setCurrentPost}
             setCurrentUser={setCurrentUser}
           />

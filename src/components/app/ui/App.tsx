@@ -30,7 +30,7 @@ const App: FC<AppPropsType> = (props) => {
       <Users usersState={usersState} setPostsState={setPostsState} />
       <Posts
         usersState={usersState}
-        postsState={postsState}
+        postsState={postsState as any}
         setCurrentPost={setCurrentPost}
         setCommentsState={setCommentsState}
         setCurrentUser={setCurrentUser}
