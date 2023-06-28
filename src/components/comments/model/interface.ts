@@ -1,3 +1,6 @@
+import { PostsType } from "../../posts";
+import { UsersType } from "../../users";
+
 export interface CommentsType {
   body: string;
   email: string;
@@ -8,5 +11,8 @@ export interface CommentsType {
 
 export interface CommentsPropsType {
   commentsState: Array<CommentsType>;
-  setCommentsState: (value: CommentsType) => void;
+  setCommentsState: (value: Array<CommentsType>) => void;
+  currentPost: PostsType;
+  setCurrentPost: (value: PostsType) => void;
+  currentUser: UsersType;
 }

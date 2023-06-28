@@ -12,7 +12,8 @@ const App: FC<AppPropsType> = (props) => {
     usersState,
     setUsersState,
     setCommentsState,
-    commentsState,
+    setCurrentPost,
+    setCurrentUser,
   } = props;
 
   useEffect(() => {
@@ -27,7 +28,13 @@ const App: FC<AppPropsType> = (props) => {
   return (
     <div className="app_wrapper">
       <Users usersState={usersState} setPostsState={setPostsState} />
-      <Posts postsState={postsState} setCommentsState={setCommentsState} />
+      <Posts
+        usersState={usersState}
+        postsState={postsState}
+        setCurrentPost={setCurrentPost}
+        setCommentsState={setCommentsState}
+        setCurrentUser={setCurrentUser}
+      />
     </div>
   );
 };

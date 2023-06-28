@@ -10,6 +10,8 @@ const withRouter = () => {
   const [postsState, setPostsState] = useState<Array<PostsType>>([]);
   const [usersState, setUsersState] = useState<Array<UsersType>>([]);
   const [commentsState, setCommentsState] = useState<Array<CommentsType>>([]);
+  const [currentPost, setCurrentPost] = useState<PostsType>({});
+  const [currentUser, setCurrentUser] = useState<UsersType>({});
 
   useEffect(() => {
     posts().then((data) => {
@@ -19,6 +21,10 @@ const withRouter = () => {
       if (data.status === 200) setUsersState(data.data);
     });
   }, []);
+
+  useEffect(() => {
+    console.log(currentPost);
+  }, [currentPost]);
 
   return (
     <Routes>
@@ -33,10 +39,24 @@ const withRouter = () => {
             postsState={postsState}
             commentsState={commentsState}
             setCommentsState={setCommentsState}
+            currentUser={currentUser}
+            setCurrentPost={setCurrentPost}
+            setCurrentUser={setCurrentUser}
           />
         }
       />
-      <Route path="/comments" element={<Comments />} />
+      <Route
+        path="/comments"
+        element={
+          <Comments
+            commentsState={commentsState}
+            setCommentsState={setCommentsState}
+            currentPost={currentPost}
+            setCurrentPost={setCurrentPost}
+            currentUser={currentUser}
+          />
+        }
+      />
     </Routes>
   );
 };

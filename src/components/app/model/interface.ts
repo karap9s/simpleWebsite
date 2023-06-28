@@ -9,4 +9,6 @@ export interface AppPropsType {
   setUsersState: (value: Array<UsersType>) => void;
   commentsState: Array<CommentsType>;
   setCommentsState: (value: Array<CommentsType>) => void;
+  setCurrentPost: (value: PostsType) => void;
+  setCurrentUser: (value: UsersType) => void;
 }
