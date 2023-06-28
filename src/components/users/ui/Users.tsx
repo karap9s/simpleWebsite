@@ -14,7 +14,7 @@ const Users: FC<UsersPropsType> = (props) => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <>
       <h2 className={styles.heading}>Users:</h2>
       <Select
         placeholder="Select user..."
@@ -24,7 +24,7 @@ const Users: FC<UsersPropsType> = (props) => {
           return { value: user.id, label: user.name };
         })}
       />
-    </div>
+    </>
   );
 };
 

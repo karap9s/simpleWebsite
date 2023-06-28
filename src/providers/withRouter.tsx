@@ -22,10 +22,6 @@ const withRouter = () => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(currentPost);
-  }, [currentPost]);
-
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/posts" />} />
