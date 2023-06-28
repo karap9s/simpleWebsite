@@ -3,6 +3,7 @@ import { CommentsPropsType, CommentsType } from "../model/interface";
 import styles from "./comments.module.css";
 import { PostsType } from "../../posts";
 import User from "../../../assets/user.png";
+import { useNavigate } from "react-router-dom";
 
 const Comments: FC<CommentsPropsType> = (props) => {
   const {
@@ -13,6 +14,8 @@ const Comments: FC<CommentsPropsType> = (props) => {
     currentUser,
   } = props;
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     // return () => {
     //   setCommentsState([] as Array<CommentsType>);
@@ -22,6 +25,10 @@ const Comments: FC<CommentsPropsType> = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.user_info_wrapper}>
+        <button className={styles.close_btn} onClick={() => navigate("/posts")}>
+          x
+        </button>
+
         <img className={styles.user_img} src={User} alt="user_pic" />
         <h2 className={styles.user_name}>{currentUser.name},</h2>
         <p className={styles.user_email}>{currentUser.company.name}</p>
