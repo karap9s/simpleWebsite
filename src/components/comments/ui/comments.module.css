@@ -97,3 +97,30 @@
     margin-left: 10px;
     padding-left: 15px;
 }
+
+.notFound {
+    width: 40%;
+    min-height: 300px;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.notFound_text {
+    font-size: 30px;
+}
+
+.notFound_back {
+    height: 50px;
+    font-size: 18px;
+    background-color: #fff;
+    transition: .5s;
+}
+
+.notFound_back:hover {
+    cursor: pointer;
+    background-color: #d9d9d9;
+}

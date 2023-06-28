@@ -1,14 +1,24 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { CommentsPropsType } from "../model/interface";
 import styles from "./comments.module.css";
 import User from "../../../assets/user.png";
 import { useNavigate } from "react-router-dom";
 import sendComment from "../../../services/api/sendComment";
+import { notification } from "antd";
 
 const Comments: FC<CommentsPropsType> = (props) => {
   const { commentsState, setCommentsState, currentPost, currentUser } = props;
 
   const [commentText, setCommentText] = useState<string>("");
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotificationWithIcon = (type) => {
+    api["success"]({
+      message: "Success",
+      description: "Your message has been successfully sent!",
+    });
+  };
 
   const navigate = useNavigate();
 
@@ -26,6 +36,7 @@ const Comments: FC<CommentsPropsType> = (props) => {
         if (data.status === 201) {
           setCommentsState((prev) => [...prev, data.data]);
           setCommentText("");
+          openNotificationWithIcon("success");
         }
       });
     }
@@ -33,41 +44,58 @@ const Comments: FC<CommentsPropsType> = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.user_info_wrapper}>
-        <button className={styles.close_btn} onClick={() => navigate("/posts")}>
-          x
-        </button>
-
-        <img className={styles.user_img} src={User} alt="user_pic" />
-        <h2 className={styles.user_name}>{currentUser.name},</h2>
-        <p>{currentUser.company.name}</p>
-      </div>
-      <div className={styles.post_wrapper}>
-        <div className={styles.post}>
-          <h2 className={styles.post_heading}>{currentPost.title}</h2>
-          <p className={styles.post_text}>{currentPost.body}</p>
-        </div>
-        <div className={styles.comments_wrapper}>
-          <h2 className={styles.comments_wrapper_heading}>Comments</h2>
-          {commentsState?.map((comment) => (
-            <div
-              className={styles.comment}
-              key={`${comment.id}-${comment.body}`}
+      {contextHolder}
+      {commentsState.length ? (
+        <>
+          <div className={styles.user_info_wrapper}>
+            <button
+              className={styles.close_btn}
+              onClick={() => navigate("/posts")}
             >
-              <p className={styles.comment_heading}>{comment.name}</p>
-              <p className={styles.comment_body}>{comment.body}</p>
+              x
+            </button>
+            <img className={styles.user_img} src={User} alt="user_pic" />
+            <h2 className={styles.user_name}>{currentUser.name},</h2>
+            <p>{currentUser.company.name}</p>
+          </div>
+          <div className={styles.post_wrapper}>
+            <div className={styles.post}>
+              <h2 className={styles.post_heading}>{currentPost.title}</h2>
+              <p className={styles.post_text}>{currentPost.body}</p>
             </div>
-          ))}
-          <input
-            value={commentText}
-            onKeyDown={handleKeyDown}
-            onChange={handleInput}
-            className={styles.comments_wrapper_input}
-            type="text"
-            placeholder="Leave your comment..."
-          />
+            <div className={styles.comments_wrapper}>
+              <h2 className={styles.comments_wrapper_heading}>Comments</h2>
+              {commentsState?.map((comment) => (
+                <div
+                  className={styles.comment}
+                  key={`${comment.id}-${comment.body}`}
+                >
+                  <p className={styles.comment_heading}>{comment.name}</p>
+                  <p className={styles.comment_body}>{comment.body}</p>
+                </div>
+              ))}
+              <input
+                value={commentText}
+                onKeyDown={handleKeyDown}
+                onChange={handleInput}
+                className={styles.comments_wrapper_input}
+                type="text"
+                placeholder="Leave your comment..."
+              />
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className={styles.notFound}>
+          <p className={styles.notFound_text}>Not found any post :(</p>
+          <button
+            onClick={() => navigate("/posts")}
+            className={styles.notFound_back}
+          >
+            Back to posts page?
+          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 };
