@@ -45,7 +45,7 @@ const Comments: FC<CommentsPropsType> = (props) => {
   return (
     <div className={styles.wrapper}>
       {contextHolder}
-      {commentsState.length ? (
+      {commentsState.length > 0 && (
         <>
           <div className={styles.user_info_wrapper}>
             <button
@@ -87,16 +87,17 @@ const Comments: FC<CommentsPropsType> = (props) => {
             </div>
           </div>
         </>
-      ) : (
-        <div className={styles.notFound}>
-          <p className={styles.notFound_text}>Not found any post :(</p>
-          <button
-            onClick={() => navigate("/posts")}
-            className={styles.notFound_back}
-          >
-            Back to posts page?
-          </button>
-        </div>
+      )}
+      {commentsState.length === 0 && (
+          <div className={styles.notFound}>
+            <p className={styles.notFound_text}>Not found any post :(</p>
+            <button
+                onClick={() => navigate("/posts")}
+                className={styles.notFound_back}
+            >
+              Back to posts page?
+            </button>
+          </div>
       )}
     </div>
   );
